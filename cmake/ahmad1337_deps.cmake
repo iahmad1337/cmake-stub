@@ -1,7 +1,5 @@
 # I don't know if setting these policies is okay but I did it anyway to get rid
 # of warnings
-# https://cmake.org/cmake/help/latest/policy/CMP0135.html
-cmake_policy(SET CMP0135 NEW)
 # https://cmake.org/cmake/help/latest/policy/CMP0077.html
 cmake_policy(SET CMP0077 NEW)
 
