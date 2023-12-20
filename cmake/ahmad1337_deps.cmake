@@ -25,7 +25,7 @@ endmacro()
 if (USE_CPPUTILS)
     AddUrlLib(
         cpputils
-        https://github.com/A-Ih/cpputils/archive/refs/heads/main.zip
+        https://github.com/iahmad1337/cpputils/archive/refs/heads/main.zip
         cpputils::cpputils
         )
 endif()
@@ -33,7 +33,7 @@ endif()
 if (USE_GTEST)
     AddUrlLib(
         googletest
-        https://github.com/A-Ih/googletest/archive/refs/heads/main.zip
+        https://github.com/google/googletest/archive/refs/heads/main.zip
         gtest_main
         )
 endif()
@@ -41,7 +41,7 @@ endif()
 if(USE_FMT)
     AddUrlLib(
         fmt
-        https://github.com/A-Ih/fmt/archive/refs/heads/master.zip
+        https://github.com/fmtlib/fmt/archive/refs/heads/master.zip
         fmt::fmt
         )
 endif()
@@ -49,7 +49,7 @@ endif()
 if(USE_RANGEV3)
     AddUrlLib(
         range-v3
-        https://github.com/A-Ih/range-v3/archive/refs/heads/master.zip
+        https://github.com/ericniebler/range-v3/archive/refs/heads/master.zip
         range-v3::range-v3
         )
 endif()
@@ -57,7 +57,7 @@ endif()
 if(USE_RE2)
     AddUrlLib(
         re2
-        https://github.com/A-Ih/re2/archive/refs/heads/main.zip
+        https://github.com/google/re2/archive/refs/heads/main.zip
         re2::re2
         )
 endif()
@@ -73,7 +73,7 @@ endif()
 if(USE_SPDLOG)
     AddUrlLib(
         spdlog
-        https://github.com/A-Ih/spdlog/archive/refs/heads/v1.x.zip
+        https://github.com/gabime/spdlog/archive/refs/heads/v1.x.zip
         spdlog::spdlog
         )
 endif()
@@ -81,7 +81,7 @@ endif()
 if(USE_ARGPARSE)
     AddUrlLib(
         argparse
-        https://github.com/A-Ih/argparse/archive/refs/heads/master.zip
+        https://github.com/p-ranav/argparse/archive/refs/heads/master.zip
         argparse::argparse
     )
 endif()
