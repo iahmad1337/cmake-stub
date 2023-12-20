@@ -25,5 +25,6 @@ add_basic_executable(NAME a SRCS a.cc)
 
 link_to_all(
     TARGETS a
-    DEPS cpputils::cpputils range-v3::range-v3 absl::strings absl::str_format absl::log gtest
+    DEPS cpputils::cpputils range-v3::range-v3 absl::strings absl::str_format
+    absl::log GTest::GTest
 )

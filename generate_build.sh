@@ -6,6 +6,10 @@ then
     exit 1
 fi
 
+################################################################################
+#                            Determining build type                            #
+################################################################################
+
 additional_opts="-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 build_dir=""
 if [ "$1" = "debug" ]
@@ -21,12 +25,29 @@ else
     exit 1
 fi
 
-# fetch abseil
-if [ ! -d third-party/abseil-cpp-master ]
+################################################################################
+#               Determining mechanism for fetching dependencies                #
+################################################################################
+
+if [ "$#" -lt 2 ]
 then
-    wget https://github.com/abseil/abseil-cpp/archive/refs/heads/master.zip
-    unzip master.zip -d third-party && rm master.zip
+    while true
+    do
+        read -p "Are you sure you want to continue without providing vcpkg root? (y/n)" answer
+        case $answer in
+            [Yy]* )
+                echo "Proceeding with installation from urls"
+                break;;
+            [Nn]* )
+                echo "Please relaunch the script and pass vcpkg root as the second argument. Aborting"
+                exit 0
+                break;;
+            * ) echo "Please answer with 'y' or 'n'.";;
+        esac
+    done
 fi
+
+additional_opts="$additional_opts -DUSE_VCPKG=ON -DCMAKE_TOOLCHAIN_FILE=$2/scripts/buildsystems/vcpkg.cmake"
 
 # NOTE: the second variable is not quoted because I want it to be split
 cmake -S . -B "$build_dir" $additional_opts
