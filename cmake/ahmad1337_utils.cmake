@@ -48,14 +48,14 @@ endfunction()
 
 function(link_to_all)
     cmake_parse_arguments(
-        PARSED_ARGS # prefix of output variables
-        "" # list of names of the boolean arguments (only defined ones will be true)
-        "" # list of names of mono-valued arguments
-        "TARGETS;DEPS" # list of names of multi-valued arguments (output variables are lists)
-        ${ARGN} # arguments of the function to parse, here we take the all original ones
+        PARSED_ARGS
+        ""
+        ""
+        "TARGETS;DEPS"
+        ${ARGN}
     )
     message(STATUS "Linking libs ${PARSED_ARGS_DEPS} to targets ${PARSED_ARGS_TARGETS}")
     foreach(target ${PARSED_ARGS_TARGETS})
-        target_link_libraries("${target}" ${PARSED_ARGS_DEPS})
+        target_link_libraries("${target}" PUBLIC ${PARSED_ARGS_DEPS})
     endforeach()
 endfunction()
