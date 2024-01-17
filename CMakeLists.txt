@@ -14,6 +14,7 @@ set(USE_ARGPARSE OFF)
 set(USE_ABSL ON)
 
 include(cmake/ahmad1337_deps.cmake)
+find_package(GTest)
 
 ################################################################################
 #                                   Targets                                    #
@@ -21,10 +22,12 @@ include(cmake/ahmad1337_deps.cmake)
 
 include(cmake/ahmad1337_utils.cmake)
 
-add_basic_executable(NAME a SRCS a.cc)
+add_basic_executable(
+    NAME a
+    SRCS a.cc
+)
 
 link_to_all(
     TARGETS a
-    DEPS cpputils::cpputils range-v3::range-v3 absl::strings absl::str_format
-    absl::log GTest::GTest
+    DEPS cpputils::cpputils range-v3::range-v3 absl::strings absl::str_format absl::log GTest::GTest
 )

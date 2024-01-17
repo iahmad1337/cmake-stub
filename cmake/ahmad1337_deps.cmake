@@ -8,7 +8,7 @@ cmake_policy(SET CMP0077 NEW)
 # I find any problems
 include(FetchContent)
 
-macro(AddUrlLib vcpkg_name url)
+macro(AddLibrary vcpkg_name url)
     if (USE_VCPKG)
         message("Using vcpkg version of ${vcpkg_name}")
         find_package(${vcpkg_name} REQUIRED)
@@ -34,49 +34,49 @@ if (USE_CPPUTILS)
 endif()
 
 if (USE_GTEST)
-    AddUrlLib(
-        gtest
+    AddLibrary(
+        GTest
         https://github.com/google/googletest/archive/refs/heads/main.zip
         )
 endif()
 
 if(USE_FMT)
-    AddUrlLib(
+    AddLibrary(
         fmt
         https://github.com/fmtlib/fmt/archive/refs/heads/master.zip
         )
 endif()
 
 if(USE_RANGEV3)
-    AddUrlLib(
+    AddLibrary(
         range-v3
         https://github.com/ericniebler/range-v3/archive/refs/heads/master.zip
         )
 endif()
 
 if(USE_RE2)
-    AddUrlLib(
+    AddLibrary(
         re2
         https://github.com/google/re2/archive/refs/heads/main.zip
         )
 endif()
 
 if(USE_JSON)
-    AddUrlLib(
+    AddLibrary(
         nlohmann-json
         https://github.com/nlohmann/json/archive/refs/heads/master.zip
         )
 endif()
 
 if(USE_SPDLOG)
-    AddUrlLib(
+    AddLibrary(
         spdlog
         https://github.com/gabime/spdlog/archive/refs/heads/v1.x.zip
         )
 endif()
 
 if(USE_ARGPARSE)
-    AddUrlLib(
+    AddLibrary(
         argparse
         https://github.com/p-ranav/argparse/archive/refs/heads/master.zip
     )
@@ -84,7 +84,7 @@ endif()
 
 if (USE_ABSL)
     set(ABSL_PROPAGATE_CXX_STD ON)
-    AddUrlLib(
+    AddLibrary(
         absl
         https://github.com/abseil/abseil-cpp/archive/refs/heads/master.zip
         )

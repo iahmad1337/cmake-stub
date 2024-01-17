@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -x
 
 if [ ! -f ./CMakeLists.txt ]
 then
@@ -51,4 +52,4 @@ additional_opts="$additional_opts -DUSE_VCPKG=ON -DCMAKE_TOOLCHAIN_FILE=$2/scrip
 
 # NOTE: the second variable is not quoted because I want it to be split
 cmake -S . -B "$build_dir" $additional_opts
-cp "$build_dir/compile_commands.json" .
+cp --force "$build_dir/compile_commands.json" .
