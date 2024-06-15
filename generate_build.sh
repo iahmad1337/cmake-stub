@@ -46,9 +46,9 @@ then
             * ) echo "Please answer with 'y' or 'n'.";;
         esac
     done
+else
+    additional_opts="$additional_opts -DUSE_VCPKG=ON -DCMAKE_TOOLCHAIN_FILE=$2/scripts/buildsystems/vcpkg.cmake"
 fi
-
-additional_opts="$additional_opts -DUSE_VCPKG=ON -DCMAKE_TOOLCHAIN_FILE=$2/scripts/buildsystems/vcpkg.cmake"
 
 # NOTE: the second variable is not quoted because I want it to be split
 cmake -S . -B "$build_dir" $additional_opts
