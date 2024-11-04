@@ -11,25 +11,18 @@ fi
 #                            Determining build type                            #
 ################################################################################
 
-additional_opts="-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
-build_dir=""
-if [ "$1" = "debug" ]
+if [ "$#" -lt 1 ]
 then
-    additional_opts="$additional_opts -DCMAKE_BUILD_TYPE=Debug -DUSE_SANITIZERS=ON"
-    build_dir="./debug"
-elif [ "$1" = "release" ]
-then
-    additional_opts="$additional_opts -DCMAKE_BUILD_TYPE=Release"
-    build_dir="./release"
-else
     echo "Please pass the build type (debug or release)"
     exit 1
 fi
+preset="$1"
 
 ################################################################################
 #               Determining mechanism for fetching dependencies                #
 ################################################################################
 
+additional_opts=""
 if [ "$#" -lt 2 ]
 then
     while true
@@ -47,9 +40,13 @@ then
         esac
     done
 else
-    additional_opts="$additional_opts -DUSE_VCPKG=ON -DCMAKE_TOOLCHAIN_FILE=$2/scripts/buildsystems/vcpkg.cmake"
+    VCPKG_ROOT="$2"
+    additional_opts="$additional_opts -DUSE_VCPKG=ON -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake"
+    additional_opts="$additional_opts -DVCPKG_TARGET_TRIPLET=x64-linux-clang"
+    additional_opts="$additional_opts -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$VCPKG_ROOT/triplets/clang-toolchain.cmake"
 fi
 
 # NOTE: the second variable is not quoted because I want it to be split
-cmake -S . -B "$build_dir" $additional_opts
-cp --force "$build_dir/compile_commands.json" .
+cmake -S . --preset=$preset $additional_opts
+
+cp --force "$preset/compile_commands.json" .
